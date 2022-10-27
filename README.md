@@ -42,7 +42,7 @@ We provide a brief tutorial for Hawkeye.
 ### Clone
 
 ```
-git clone https://github.com/NJUST-VIPGroup/Hawkeye.git
+git clone https://github.com/Hawkeye-FineGrained/Hawkeye.git
 cd Hawkeye
 ```
 
