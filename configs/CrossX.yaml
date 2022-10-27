@@ -1,0 +1,35 @@
+experiment:
+  name: CX 1
+  log_dir: results/CrossX
+  cuda: [0]
+  seed: 42
+dataset:
+  name: cub
+  root_dir: data/bird/CUB_200_2011/images
+  meta_dir: metadata/cub
+  batch_size: 8
+  num_workers: 2
+  transformer:
+    image_size: 448
+    resize_size: 600
+model:
+  name: CrossX
+  num_parts: 2   # Number of parts.
+  num_classes: 200
+train:
+  epoch: 60
+  save_frequence: 60
+  optimizer:
+    name: SGD
+    lr: 0.0025
+    weight_decay: 0.00002
+    momentum: 0.9
+  scheduler:
+    name: MultiStepLR
+    milestones: [15, 25]
+    gamma: 0.1
+  criterion:
+    name: CrossXLoss
+    num_parts: 2              # Number of parts.
+    gamma: [0.5, 0.25, 0.5]   # Gamma in Eq.(1), balancing different costs.
+

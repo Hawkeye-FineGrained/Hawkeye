@@ -1,0 +1,38 @@
+experiment:
+  name: CIN 1
+  log_dir: results/CIN
+  cuda: [0]
+  seed: 42
+dataset:
+  name: cub
+  root_dir: data/bird/CUB_200_2011/images
+  meta_dir: metadata/cub
+  n_classes: 4    # Number of categories.
+  n_samples: 5    # Number of samples for each category.
+  batch_size: 20  # For validating stage only.
+  num_workers: 4
+  transformer:
+    image_size: 224
+    resize_size: 256
+model:
+  name: CIN
+  num_classes: 200
+train:
+  epoch: 100
+  save_frequence: 60
+  optimizer:
+    name: SGD
+    lr: 0.01
+    weight_decay: 0.0002
+  scheduler:
+    name: ''
+    T_max: 100
+    warmup_epochs: 5
+    lr_warmup_decay: 0.01
+  criterion:
+    name: CINLoss
+    alpha: 2.0        # Alpha in Eq.(9). Weight of contrastive loss.
+    beta: 0.5         # Beta in E`.(8). A predefined margin in contrastive loss.
+    channel: 2048     # Channel of feature map `Z_CCI` which is the output of CCI module.
+    feature_size: 49  # Product of height and width in feature map `Z_CCI` which is the output of CCI module.
+    r_channel: 512    # Output dimension of `h` in Eq.(8).

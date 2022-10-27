@@ -1,0 +1,37 @@
+experiment:
+  name: OSME 1
+  log_dir: results/OSMENet
+  cuda: [0]
+  seed: 42
+dataset:
+  name: cub
+  root_dir: data/bird/CUB_200_2011/images
+  meta_dir: metadata/cub
+  batch_size: 32
+  n_classes: 5
+  n_samples: 2
+  num_workers: 2
+  transformer:
+    image_size: 224
+    resize_size: 256
+model:
+  name: OSMENet
+  num_attention: 2  # Number of attention regions (`P` in paper).
+  num_classes: 200
+train:
+  epoch: 60
+  save_frequence: 80
+  optimizer:
+    name: SGD
+    lr: 0.04
+    weight_decay: 0.00002
+  scheduler:
+    name: ''
+    T_max: 60
+    warmup_epochs: 5
+    lr_warmup_decay: 0.01
+  criterion:
+    name: MAMCLoss
+    lambda_a: 0.5   # The coefficient of n-pair loss.
+    use_mamc: True  # Whether use MAMC loss or not.
+

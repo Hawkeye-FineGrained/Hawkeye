@@ -1,0 +1,34 @@
+experiment:
+  name: ResNet50                # The name of experiment.
+  log_dir: results/base_res50   # Log directory of the experiment.
+  cuda: [0]                     # The list of gpu to use. `[]` for cpu only.
+  seed: 42                      # Fix the random seed. `None` for random.
+#  debug: False                  # If `True`, ignore the error of log folder exist.
+#  resume: results/base_res50/ResNet50/checkpoint_epoch_12.pth   # Resume from a checkpoint.
+dataset:
+  name: cub                     # Here we use CUB200 dataset.
+  root_dir: data/bird/CUB_200_2011/images   # Path to the folder of images in CUB200.
+  meta_dir: metadata/cub        # Path to meta-data file for CUB200.
+  batch_size: 24                # Number of images in a batch.
+  num_workers: 4                # Number of workers for dataloader.
+  transformer:
+    image_size: 224             # The size of input image (224x224).
+    resize_size: 256            # The size of image to be resized before transforms (256x256).
+model:
+  name: ResNet50                # Here we use ResNet50 as a model.
+  num_classes: 200              # The number of categories in CUB200.
+#  load: results/base_res50/ResNet50 1/best_model.pth     # Path to load model.
+train:
+  epoch: 30                     # Total num of epochs.
+  save_frequence: 30            # The frequency of saving model.
+  optimizer:
+    name: Adam                  # Here we use adam optimizer.
+    lr: 0.0001                  # Set learning rate to 0.0001.
+    momentum: 0.9
+    weight_decay: 0.00002
+  scheduler:
+    name: CosineAnnealingLR     # Here we use CosineAnnealingLR scheduler.
+    T_max: 30                   # Set `T_max` to 30.
+    eta_min: 0.00001
+  criterion:
+    name: CrossEntropyLoss      # Here we use CrossEntropyLoss.

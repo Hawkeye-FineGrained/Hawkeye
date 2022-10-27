@@ -1,0 +1,36 @@
+experiment:
+  name: CBCNN 1_1
+  log_dir: results/CBCNN
+  cuda: [0]
+  seed: 0
+dataset:
+  name: cub
+  root_dir: data/bird/CUB_200_2011/images
+  meta_dir: metadata/cub
+  batch_size: 16
+  num_workers: 4
+  transformer:
+    image_size: 448
+    resize_size: 512
+model:
+  name: CBCNN
+  stage: 2  # Training stage for CBCNN. We train all parameters in stage 2.
+  load: results/CBCNN/CBCNN 1/best_model.pth   # Load best model trained in stage 1.
+  num_classes: 200
+  input_channel: 512    # Input dimension of compact bilinear pooling.
+  output_channel: 6000  # Output dimension of compact bilinear pooling.
+train:
+  val_first: True   # Firstly, we validate model before training.
+  epoch: 100
+  save_frequence: 50
+  optimizer:
+    name: SGD
+    lr: 0.008
+    momentum: 0.9
+    weight_decay: 0.00000001
+  scheduler:
+    T_max: 100
+    warmup_epochs: 10
+    lr_warmup_decay: 0.01
+  criterion:
+    name: CrossEntropyLoss

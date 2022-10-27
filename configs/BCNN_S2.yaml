@@ -1,0 +1,32 @@
+experiment:
+  name: bcnn_cub 1_1
+  log_dir: results/bcnn
+  cuda: [0]
+  seed: 0
+dataset:
+  name: cub
+  root_dir: data/bird/CUB_200_2011/images
+  meta_dir: metadata/cub
+  batch_size: 8
+  num_workers: 2
+  transformer:
+    image_size: 448
+    resize_size: 512
+model:
+  name: BCNN
+  stage: 2  # Training stage for BCNN. We train all parameters in stage 2.
+  load: results/bcnn/bcnn_cub 1/best_model.pth  # Load model trained in stage 1.
+  num_classes: 200
+train:
+  epoch: 30
+  save_frequence: 5
+  val_first: True
+  optimizer:
+    name: SGD
+    lr: 0.005
+    weight_decay: 0.00001
+    momentum: 0.9
+  scheduler:
+    name: ReduceLROnPlateau
+  criterion:
+    name: CrossEntropyLoss

@@ -1,0 +1,35 @@
+experiment:
+  name: NTS 1
+  log_dir: results/NTSNet
+  cuda: [0]
+  seed: 42
+dataset:
+  name: cub
+  root_dir: data/bird/CUB_200_2011/images
+  meta_dir: metadata/cub
+  batch_size: 4
+  num_workers: 4
+  transformer:
+    image_size: 224
+    resize_size: 256
+model:
+  name: NTSNet
+  image_size: 224
+  proposal_num: 6   # `M`, number of regions.
+  cat_num: 4        # `K`, number of features to concat.
+train:
+  epoch: 200
+  save_frequence: 10
+  optimizer:
+    name: Adam
+    lr: 0.0004
+    weight_decay: 0.00002
+  scheduler:
+    name: ''
+    T_max: 200
+    warmup_epochs: 10
+    lr_warmup_decay: 0.01
+  criterion:
+    name: NTSLoss
+    proposal_num: 6   # `M`, number of regions.
+

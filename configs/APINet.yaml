@@ -1,0 +1,37 @@
+experiment:
+  name: API_res101 1        # The name of experiment.
+  log_dir: results/APINet   # Log directory of the experiment.
+  cuda: [0]                 # The list of gpu to use. `[]` for cpu only.
+  seed: 42                  # Fix the random seed. `None` for random.
+#  resume: results/APINet/API_res101 2/checkpoint_epoch_19.pth    # Resume from a checkpoint.
+dataset:
+  name: cub
+  root_dir: data/bird/CUB_200_2011/images
+  meta_dir: metadata/cub
+  n_classes: 10   # Number of categories.
+  n_samples: 4    # Number of samples for each category.
+  batch_size: 24  # For validating stage only.
+  num_workers: 4
+  transformer:
+    image_size: 224
+    resize_size: 256
+model:
+  name: APINet
+  num_classes: 200
+#  load: results/APINet/API_res101 1/best_model.pth     # Path to load model.
+train:
+  epoch: 100          # Total num of epochs.
+  save_frequence: 10  # The frequency of saving model.
+#  val_first: False   # If `true`, it will validate the model firstly before training.
+  optimizer:
+    name: Adam
+    lr: 0.0001
+    weight_decay: 0.00000002
+  scheduler:
+    name: ''
+    T_max: 100
+    warmup_epochs: 8
+    lr_warmup_decay: 0.01
+  criterion:
+    name: APINetLoss
+

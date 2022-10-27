@@ -1,0 +1,37 @@
+experiment:
+  name: S3N 1
+  log_dir: results/S3N
+  cuda: [0]
+  seed: 42
+#  resume: results/S3N/S3N 2/checkpoint_epoch_20.pth
+dataset:
+  name: cub
+  root_dir: data/bird/CUB_200_2011/images
+  meta_dir: metadata/cub
+  batch_size: 8
+  num_workers: 0
+  transformer:
+    image_size: 448
+    resize_size: 600
+model:
+  name: S3N
+  image_size: 448
+  num_classes: 200
+  radius: 0.12      # Radius of each sparse attention control sampling scale of the corresponding visual evidence
+  radius_inv: 0.3   # Radius of complementary sparse attention.
+  base_ratio: 0.09
+train:
+  epoch: 100
+  save_frequence: 100
+  optimizer:
+    name: SGD
+    lr: 0.005              # x0.1 for backbone
+    momentum: 0.9
+    weight_decay: 0.0001
+  scheduler:
+    name: CosineAnnealingLR
+    T_max: 100
+    eta_min: 0.000001
+  criterion:
+    name: MultiSmoothLoss
+    smooth_ratio: 0.85

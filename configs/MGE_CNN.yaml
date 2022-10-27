@@ -1,0 +1,33 @@
+experiment:
+  name: MGE 1
+  log_dir: results/MGE_CNN
+  cuda: [0]
+  seed: 42
+dataset:
+  name: cub
+  root_dir: data/bird/CUB_200_2011/images
+  meta_dir: metadata/cub
+  batch_size: 4
+  num_workers: 0
+  transformer:
+    image_size: 224
+    resize_size: 256
+model:
+  name: MGE_CNN
+  num_classes: 200
+  image_size: 224
+  box_thred: 0.2  # Threshold of estimating bounding box
+train:
+  epoch: 100
+  save_frequence: 10
+  optimizer:
+    name: Adam
+    lr: 0.0004
+    weight_decay: 0.00002
+  scheduler:
+    name: ''
+    T_max: 100
+    warmup_epochs: 10
+    lr_warmup_decay: 0.01
+  criterion:
+    name: CrossEntropyLoss

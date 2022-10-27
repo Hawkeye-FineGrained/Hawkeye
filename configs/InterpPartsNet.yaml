@@ -1,0 +1,36 @@
+experiment:
+  name: IP 1
+  log_dir: results/InterpPartsNet
+  cuda: [0]
+  seed: 1
+dataset:
+  name: cub
+  root_dir: data/bird/CUB_200_2011/images
+  meta_dir: metadata/cub
+  batch_size: 16
+  num_workers: 4
+  transformer:
+    image_size: 448
+    resize_size: 512
+    p_erasing: 0.05  # Probability of erasing in `transforms.RandomErasing`.
+model:
+  name: IP_ResNet101
+  num_parts: 5
+  num_classes: 200
+train:
+  epoch: 150
+  save_frequence: 200
+  optimizer:
+    name: SGD
+    lr: 0.0005
+    weight_decay: 0.0005
+  scheduler:
+    name: CosineAnnealingLR
+  criterion:
+    name: InterpPartsLoss
+    radius: 2     # Radius for the Gaussian kernel.
+    std: 0.4      # Standard deviation for the Gaussian kernel.
+    num_parts: 5  # Number of parts.
+    alpha: 1      # Parameter of Beta distribution.
+    beta: 0.001   # Parameter of Beta distribution.
+    coeff: 0.5    # Weight of loss.

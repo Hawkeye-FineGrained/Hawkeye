@@ -1,0 +1,33 @@
+experiment:
+  name: PC_res50 1
+  log_dir: results/PC_ResNet50
+  cuda: [0]
+  seed: 42
+dataset:
+  name: cub
+  root_dir: data/bird/CUB_200_2011/images
+  meta_dir: metadata/cub
+  batch_size: 24
+  num_workers: 4
+  transformer:
+    image_size: 224
+    resize_size: 256
+model:
+  name: ResNet50
+  num_classes: 200
+train:
+  epoch: 60
+  save_frequence: 10
+  optimizer:
+    name: Adam
+    lr: 0.0004
+    momentum: 0.9
+    weight_decay: 0.00002
+  scheduler:
+    name: ''
+    T_max: 60
+    warmup_epochs: 5
+    lr_warmup_decay: 0.01
+  criterion:
+    name: PairwiseConfusionLoss
+    lambda_a: 0.1  # Lambda, the coefficient of euclidean confusion loss.

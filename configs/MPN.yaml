@@ -1,0 +1,37 @@
+experiment:
+  name: MPN 1
+  log_dir: results/MPN
+  cuda: [0]
+  seed: 42
+dataset:
+  name: cub
+  root_dir: data/bird/CUB_200_2011/images
+  meta_dir: metadata/cub
+  batch_size: 8
+  num_workers: 4
+  transformer:
+    image_size: 224
+    resize_size: 256
+model:
+  name: MPN
+  iter_num: 5     # Iteration of Newton-schulz method.
+  is_sqrt: True   # Whether perform matrix square root or not.
+  is_vec: True    # Whether the output is a vector or not.
+  input_dim: 2048 # Channel of input feature.
+  dimension_reduction: 256  # To reduce the channel of feature. None if pretrained else 256.
+  num_classes: 200
+train:
+  epoch: 100
+  save_frequence: 40
+  optimizer:
+    name: Adam
+    lr: 0.00008
+    weight_decay: 0.00002
+  scheduler:
+    name: ''
+    T_max: 110
+    warmup_epochs: 10
+    lr_warmup_decay: 0.01
+  criterion:
+    name: CrossEntropyLoss
+

@@ -1,0 +1,29 @@
+experiment:
+  name: bcnn_cub 1
+  log_dir: results/bcnn
+  cuda: [0]
+  seed: 0
+dataset:
+  name: cub
+  root_dir: data/bird/CUB_200_2011/images
+  meta_dir: metadata/cub
+  batch_size: 8
+  num_workers: 2
+  transformer:
+    image_size: 448
+model:
+  name: BCNN
+  stage: 1  # Training stage for BCNN. Stage 1 freeze backbone parameters.
+  num_classes: 200
+train:
+  epoch: 55
+  save_frequence: 5
+  optimizer:
+    name: SGD
+    lr: 1.0
+    weight_decay: 0.00000001
+    momentum: 0.9
+  scheduler:
+    name: ReduceLROnPlateau
+  criterion:
+    name: CrossEntropyLoss

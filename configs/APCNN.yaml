@@ -1,0 +1,29 @@
+experiment:
+  name: AP 1              # The name of experiment.
+  log_dir: results/APCNN  # Log directory of the experiment.
+  cuda: [0]               # The list of gpu to use. `[]` for cpu only.
+  seed: 42                # Fix the random seed. `None` for random.
+dataset:
+  name: cub
+  root_dir: data/bird/CUB_200_2011/images
+  meta_dir: metadata/cub
+  batch_size: 16
+  num_workers: 2
+  transformer:
+    image_size: 448
+    resize_size: 512
+model:
+  name: APCNN
+  num_classes: 200
+train:
+  epoch: 100
+  save_frequence: 100
+  optimizer:
+    name: SGD
+    lr: 0.0005
+    weight_decay: 0.0005
+  scheduler:
+    name: origin_code
+  criterion:
+    name: CrossEntropyLoss
+

@@ -1,0 +1,38 @@
+experiment:
+  name: D 1
+  log_dir: results/DCL
+  cuda: [0]
+  seed: 42
+dataset:
+  name: cub
+  root_dir: data/bird/CUB_200_2011/images
+  meta_dir: metadata/cub
+  batch_size: 8
+  num_workers: 0
+  transformer:
+    image_size: 448
+    resize_size: 512
+model:
+  name: DCL
+  num_classes: 200
+  cls_2: True
+  cls_2xmul: False
+train:
+  epoch: 180
+  save_frequence: 60
+  optimizer:
+    name: SGD
+    lr: 0.0008
+    lr_ratio: 10
+    weight_decay: 0.00002
+    momentum: 0.9
+  scheduler:
+    name: StepLR
+    step_size: 60
+    gamma: 0.1
+  criterion:
+    name: DCLLoss
+    alpha: 1  # Alpha in Eq.(10), balancing different loss.
+    beta: 1   # beta in Eq.(10), balancing different loss.
+    gamma: 1  # gamma in Eq.(10), balancing different loss.
+

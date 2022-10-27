@@ -1,0 +1,39 @@
+experiment:
+  name: PTN 1
+  log_dir: results/ProtoTreeNet
+  cuda: [0]
+  seed: 42
+dataset:
+  name: cub
+  root_dir: data/bird/CUB_200_2011/dataset
+  meta_dir: metadata/cub_aug
+  batch_size: 64
+  num_workers: 4
+  transformer:
+    image_size: 224
+    resize_size: 256
+model:
+  name: ProtoTreeNet
+  num_classes: 200
+  height: 9         # Height of the ProtoTree.
+  W1: 1             # Width of the prototype. Correct behaviour of the model with W1 != 1 is not guaranteed.
+  H1: 1             # Height of the prototype. Correct behaviour of the model with H1 != 1 is not guaranteed.
+  num_features: 256 # Depth of the prototype and therefore also depth of convolutional output.
+  backbone:
+    name: resnet50
+    pretrain: model_weights/BBN.iNaturalist2017.res50.180epoch.best_model.pth # Path to model pretrained on iNat17.
+train:
+  epoch: 100
+  save_frequence: 50
+  optimizer:
+    name: AdamW
+    lr: 0.001
+    weight_decay: 0.0
+  scheduler:
+    name: ''
+    T_max: 100
+    warmup_epochs: 5
+    lr_warmup_decay: 0.01
+  criterion:
+    name: CrossEntropyLoss
+
