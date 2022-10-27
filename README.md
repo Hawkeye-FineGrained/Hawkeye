@@ -6,7 +6,7 @@ Hawkeye is a unified deep learning based fine-grained image recognition toolbox 
 
 ## Updates
 
-**Oct 20, 2022:** Our Hawkeye is launched!
+**Oct 28, 2022:** Our Hawkeye is launched!
 
 ## Model Zoo
 
