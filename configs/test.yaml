@@ -1,0 +1,16 @@
+experiment:
+  name: test_bcnn
+  cuda: [0]
+dataset:
+  name: cub
+  root_dir: data/bird/CUB_200_2011/images
+  meta_dir: metadata/cub
+  batch_size: 32
+  num_workers: 4
+  transformer:
+    resize_size: 448
+    image_size: 448
+model:
+  name: BCNN
+  num_classes: 200
+  load: results/bcnn/best_model.pth

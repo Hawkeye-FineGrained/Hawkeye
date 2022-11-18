@@ -160,6 +160,16 @@ Some methods require multi-stage training.
 
 In addition, specific parameters of each method are also commented in their configs.
 
+### Testing
+
+We provide sample codes to test a model, you can run the command to test BCNN:
+
+```bash
+python test.py --config configs/test.yaml
+```
+
+You can modify `test.py` and `test.yaml` to test other models.
+
 ## License
 
 This project is released under the [MIT license](./LICENSE).
