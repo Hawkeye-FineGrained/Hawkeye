@@ -1,0 +1,17 @@
+Methods,Original Acc.,Acc. in Hawkeye
+S3N,88.5,88.29
+IP,87.3,86.65
+ProtoTree,82.2*,82.94*
+MGE-CNN,88.5,89.05
+OSME+MAMC,86.5,84.31*
+APCNN,88.4,87.84
+BCNN,84.1,83.80
+CBCNN,84.0,84.13
+Fast MPN-COV,88.1,88.81
+Pairwise Confusion,80.21,87.67
+API-Net,87.7,87.88
+CIN,87.5,85.34*
+Peer-Learning,76.48,75.18*
+NTS-Net,87.5,88.19
+CrossX,87.7,87.72
+DCL,87.8,87.64

@@ -12,6 +12,9 @@ Hawkeye is a unified deep learning based fine-grained image recognition toolbox 
 
 The following methods are placed in `model/methods` and the corresponding losses are placed in `model/loss`.
 
+The table of experimental results for the following methods on `CUB-200` can be found in the `results.csv` file.
+Except for the asterisked methods, $448 \times 448$ input images were used.
+
 - **Utilizing Deep Filters**
   - [S3N](https://openaccess.thecvf.com/content_ICCV_2019/papers/Ding_Selective_Sparse_Sampling_for_Fine-Grained_Image_Recognition_ICCV_2019_paper.pdf)
   - [ProtoTree](https://openaccess.thecvf.com/content/CVPR2021/papers/Nauta_Neural_Prototype_Trees_for_Interpretable_Fine-Grained_Image_Recognition_CVPR_2021_paper.pdf)
