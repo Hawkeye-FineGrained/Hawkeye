@@ -183,8 +183,6 @@ If you have any questions about our work, please do not hesitate to contact us b
 
 Xiu-Shen Wei: [weixs.gm@gmail.com](mailto:weixs.gm@gmail.com)
 
-Heyang Xu: [xuhy@njust.edu.cn](mailto:xuhy@njust.edu.cn)
-
 Jiabei He: [hejb@njust.edu.cn](mailto:hejb@njust.edu.cn)
 
 Yang Shen: [shenyang_98@njust.edu.cn](mailto:shenyang_98@njust.edu.cn)
